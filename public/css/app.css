@@ -24,9 +24,6 @@ body {
     border: var(--tblr-dropdown-border-width) solid var(--tblr-dropdown-border-color);
     border-radius: var(--tblr-dropdown-border-radius);
 }
-.dropdown-menu[data-bs-popper] {
-  left: -3px;
-}
 .dropdown-item:hover {
     border-radius: 4px;
     background-color: var(--tblr-dropdown-link-hover-bg);
