@@ -1,0 +1,356 @@
+@extends('layouts.app')
+
+@section('page-header')
+  <div class="page-header d-print-none">
+    <div class="container-fluid">
+      <div class="row g-2 align-items-center">
+        <div class="col">
+          <h2 class="page-title text-blue h2">
+            {{ $pageinfo['title'] }}
+          </h2>
+          <div class="page-pretitle">
+            {{ $pageinfo['subtitle'] }}
+          </div>
+        </div>
+        <div class="d-print-none col-auto ms-auto">
+          <div class="btn-list">
+            <div class="btn-list">
+              <button class="btn btn-red d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                <i class="icon nav-link-icon d-sm-inline-block ti ti-trash"></i>
+                Delete
+              </button>
+              <button class="btn d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#logoutModal" aria-label="Create new report">
+                <i class="icon nav-link-icon d-md-none d-lg-inline-block ti ti-trash"></i>
+              </button>
+              <button class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#newModal">
+                <i class="icon nav-link-icon d-lg-inline-block ti ti-plus"></i>
+                New
+              </button>
+              <button class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal" data-bs-target="#newModal" aria-label="Create new report">
+                <i class="icon nav-link-icon d-lg-inline-block ti ti-plus"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('page')
+  <div class="row row-cards">
+
+    <div class="col-12 col-xxl-6">
+      <div class="card mb-3 shadow-sm">
+        <div class="card-header">
+          <h3 class="card-title">Installation</h3>
+        </div>
+        <div class="card-body">
+          <p class="text-secondary">Instalation via composer</p>
+          <figure class="highlight">
+            <pre class="m-0 p-0"><code class="bash">composer require laravel/fortify</code></pre>
+          </figure>
+        </div>
+      </div>
+      <div class="card mb-3 shadow-sm">
+        <div class="card-header">
+          <h3 class="card-title">Publish Fortify's resources</span></h3>
+        </div>
+        <div class="card-body">
+          <p class="text-secondary">Next, publish Fortify's resources using the <span class="text-red">vendor:publish</span> command:</p>
+          <figure class="highlight">
+            <pre class="m-0 p-0"><code class="bash">php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"</code></pre>
+          </figure>
+        </div>
+      </div>
+      <div class="card mb-3 shadow-sm">
+        <div class="card-header">
+          <h3 class="card-title">FortifyServiceProvider</span></h3>
+        </div>
+        <div class="card-body">
+          <p class="text-secondary">Add line for register view</p>
+          <figure class="highlight">
+            <pre class="m-0 p-0"><code class="php">Fortify::registerView(function () {
+    return view('auth.register');
+});</code></pre>
+          </figure>
+          <p class="text-secondary mt-3">Add line for login form view</p>
+          <figure class="highlight">
+            <pre class="m-0 p-0"><code class="php">Fortify::loginView(function () {
+    return view('auth.login');
+});</code></pre>
+          </figure>
+          <p class="text-secondary mt-3">Add line for reset password reset link form view</p>
+          <figure class="highlight">
+            <pre class="m-0 p-0"><code class="php">Fortify::requestPasswordResetLinkView(function () {
+    return view('auth.forgot-password');
+});</code></pre>
+          </figure>
+          <p class="text-secondary mt-3">Add line for password reset view</p>
+          <figure class="highlight">
+            <pre class="m-0 p-0"><code class="php">Fortify::resetPasswordView(function ($request) {
+    return view('auth.reset-password', ['request' => $request]);
+});</code></pre>
+          </figure>
+          <p class="text-secondary mt-3">Add line for verify email view</p>
+          <figure class="highlight">
+            <pre class="m-0 p-0"><code class="php">Fortify::verifyEmailView(function () {
+    return view('auth.verify-email');
+});</code></pre>
+          </figure>
+          <p class="text-secondary mt-3">Add line for confirm password view</p>
+          <figure class="highlight">
+            <pre class="m-0 p-0"><code class="php">Fortify::confirmPasswordView(function () {
+    return view('auth.confirm-password');
+});</code></pre>
+          </figure>
+          <p class="text-secondary mt-3">Add line for two factor authentication view</p>
+          <figure class="highlight">
+            <pre class="m-0 p-0"><code class="php">Fortify::twoFactorChallengeView(function () {
+    return view('auth.two-factor-challenge');
+});</code></pre>
+          </figure>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-12 col-xxl-6">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-pills card-header-pills">
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="tab" href="#tab-top-1" role="tab" aria-selected="true">
+                <i class="icon nav-link-icon d-sm-inline-block ti ti-code"></i>
+                Login view
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-top-2" role="tab" aria-selected="true">
+                <i class="icon nav-link-icon d-sm-inline-block ti ti-code"></i>
+                Group
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-top-3" role="tab" aria-selected="true">
+                <i class="icon nav-link-icon d-sm-inline-block ti ti-code"></i>
+                Middleware</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-top-4" role="tab" aria-selected="true">
+                <i class="icon nav-link-icon d-sm-inline-block ti ti-code"></i>
+                Resources
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#tab-top-5" role="tab" aria-selected="true">
+                <i class="icon nav-link-icon d-sm-inline-block ti ti-code"></i>
+                Helpers
+              </a>
+            </li>
+            <li class="nav-item ms-auto">
+              <a class="nav-link" href="#">
+                <i class="icon d-sm-inline-block ti ti-settings"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-content">
+
+          <!-- Content of card #1 -->
+          <div class="tab-pane active show" id="tab-top-1" role="tabpanel">
+            <div class="card-body">
+              <div class="card-title">Single route</div>
+              <p class="text-secondary">
+                Single route to view
+              </p>
+              <figure class="highlight">
+                <pre class="m-0 p-0"><code class="php">Route::get('users', view('users.index'));</code></pre>
+              </figure>
+              <div class="card-title">Named single route</div>
+              <p class="text-secondary">
+                Single route to view named
+              </p>
+              <figure class="highlight">
+                <pre class="m-0 p-0"><code class="php">Route::get('users', view('users.index'))->name('users.index');</code></pre>
+              </figure>
+            </div>
+          </div>
+
+          <!-- Content of card #2 -->
+          <div class="tab-pane" id="tab-top-2" role="tabpanel">
+            <div class="card-body">
+              <div class="card-title">Single route</div>
+              <p class="text-secondary">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, alias aliquid distinctio dolorem expedita, fugiat hic magni molestiae molestias odit.
+              </p>
+              <figure class="highlight">
+                <pre class="m-0 p-0"><code class="php">
+Route::get('routes', function () {
+    $pageinfo = [
+        'title'    => 'Routes',
+        'subtitle' => 'All about laravel routes',
+    ];
+    return view('routes', compact('pageinfo'));
+})->name('routes');
+</code></pre>
+              </figure>
+            </div>
+          </div>
+          <!-- Content of card #3 -->
+          <div class="tab-pane" id="tab-top-3" role="tabpanel">
+            <div class="card-body">
+              <div class="card-title">Alerts block</div>
+              <p class="text-secondary">
+                Alerts
+              </p>
+              <figure class="highlight">
+                <pre class="m-0 p-0"><code class="blade"></code></pre>
+              </figure>
+            </div>
+          </div>
+
+          <!-- Content of card #4 -->
+          <div class="tab-pane" id="tab-top-4" role="tabpanel">
+            <div class="card-body">
+              <div class="card-title">Content of tab #4</div>
+              <p class="text-secondary">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat hic magni molestiae molestias odit.
+              </p>
+            </div>
+          </div>
+
+          <!-- Content of card #4 -->
+          <div class="tab-pane" id="tab-top-5" role="tabpanel">
+            <div class="card-body">
+              <div class="card-title">Content of tab #5</div>
+              <p class="text-secondary">
+                Lorem ipsum dolor sit amet
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@push('modals')
+  {{-- Modal --}}
+  <div class="modal modal-blur fade" id="newModal" aria-hidden="true" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add a new team</h5>
+          <button class="btn-close" data-bs-dismiss="modal" type="button" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row align-items-end mb-3">
+            <div class="col-auto">
+              <a class="avatar avatar-upload rounded" href="#">
+                <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M12 5l0 14"></path>
+                  <path d="M5 12l14 0"></path>
+                </svg>
+                <span class="avatar-upload-text">Add</span>
+              </a>
+            </div>
+            <div class="col">
+              <label class="form-label">Name</label>
+              <input class="form-control" type="text">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Pick your team color</label>
+            <div class="row g-2">
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="dark">
+                  <span class="form-colorinput-color bg-dark"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput form-colorinput-light">
+                  <input class="form-colorinput-input" name="color" type="radio" value="white" checked="">
+                  <span class="form-colorinput-color bg-white"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="blue">
+                  <span class="form-colorinput-color bg-blue"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="azure">
+                  <span class="form-colorinput-color bg-azure"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="indigo">
+                  <span class="form-colorinput-color bg-indigo"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="purple">
+                  <span class="form-colorinput-color bg-purple"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="pink">
+                  <span class="form-colorinput-color bg-pink"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="red">
+                  <span class="form-colorinput-color bg-red"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="orange">
+                  <span class="form-colorinput-color bg-orange"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="yellow">
+                  <span class="form-colorinput-color bg-yellow"></span>
+                </label>
+              </div>
+              <div class="col-auto">
+                <label class="form-colorinput">
+                  <input class="form-colorinput-input" name="color" type="radio" value="lime">
+                  <span class="form-colorinput-color bg-lime"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="form-label">Additional info</label>
+            <textarea class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn me-auto" data-bs-dismiss="modal" type="button">Close</button>
+          <button class="btn btn-primary" data-bs-dismiss="modal" type="button">Add Team</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endpush
+
+@push('scripts')
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+@endpush

@@ -45,7 +45,7 @@
                   </span>
                 </a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown {{ request()->segment(1) == 'packages' ? 'active' : '' }}">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
                   <i class="icon nav-link-icon d-inline-block ti ti-package-import"></i>
                   <span class="nav-link-title">
@@ -55,20 +55,21 @@
                 <div class="dropdown-menu">
                   <div class="dropdown-menu-column">
                     <div class="dropend">
-                      <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
+                      <a class="dropdown-item {{ request()->segment(2) == 'authorization' ? 'active' : '' }} dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                        href="#" role="button" aria-expanded="false">
                         <i class="icon nav-link-icon d-inline-block ti ti-lock text-azure"></i>
                         <span class="nav-link-title">
                           Authorization
                         </span>
                       </a>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item {{ request()->segment(1) == 'roles' ? 'active' : '' }}" href="{{ route('roles') }}">
-                          <i class="icon nav-link-icon d-inline-block ti ti-brand-laravel text-red"></i>
+                        <a class="dropdown-item {{ request()->segment(3) == 'fortify' ? 'active' : '' }}" href="{{ route('fortify') }}">
+                          <i class="icon nav-link-icon d-inline-block ti ti-brand-laravel {{ request()->segment(3) == 'fortify' ? 'text-red' : '' }}"></i>
                           <span class="nav-link-title">
                             {{ __('Laravel / Fortify') }}
                           </span>
                         </a>
-                        <a class="dropdown-item {{ request()->segment(1) == 'permissions' ? 'active' : '' }}" href="{{ route('permissions') }}">
+                        <a class="dropdown-item {{ request()->segment(3) == 'spatie' ? 'active' : '' }}" href="{{ route('permissions') }}">
                           <i class="icon nav-link-icon d-inline-block ti ti-letter-s text-blue"></i>
                           <span class="nav-link-title">
                             {{ __('Spatie / Laravel Permissions') }}
@@ -104,9 +105,9 @@
                 </div>
               </li>
               {{-- Optional Dropdown menu --}}
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown {{ request()->segment(1) == 'administration' ? 'active' : '' }}">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
-                  <i class="icon nav-link-icon d-inline-block ti ti-settings"></i>
+                  <i class="icon nav-link-icon d-inline-block ti ti-settings {{ request()->segment(1) == 'administration' ? 'text-teal' : '' }}"></i>
                   <span class="nav-link-title">
                     Administration
                   </span>
@@ -115,26 +116,27 @@
                   <div class="dropdown-menu-column">
                     {{-- <div class="hr-text text-muted my-3">Roles / permissions</div> --}}
                     <div class="dropend">
-                      <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" href="#" role="button" aria-expanded="false">
+                      <a class="dropdown-item {{ request()->segment(2) == 'user-rights' ? 'active' : '' }} dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                        href="#" role="button" aria-expanded="false">
                         <i class="icon nav-link-icon d-inline-block ti ti-users-group text-azure"></i>
                         <span class="nav-link-title">
                           User rights
                         </span>
                       </a>
                       <div class="dropdown-menu">
-                        <a class="dropdown-item {{ request()->segment(1) == 'users' ? 'active' : '' }}" href="{{ route('users') }}">
+                        <a class="dropdown-item {{ request()->segment(3) == 'users' ? 'active' : '' }}" href="{{ route('users') }}">
                           <i class="icon nav-link-icon d-inline-block ti ti-users text-lime"></i>
                           <span class="nav-link-title">
                             {{ __('Users') }}
                           </span>
                         </a>
-                        <a class="dropdown-item {{ request()->segment(1) == 'roles' ? 'active' : '' }}" href="{{ route('roles') }}">
+                        <a class="dropdown-item {{ request()->segment(3) == 'roles' ? 'active' : '' }}" href="{{ route('roles') }}">
                           <i class="icon nav-link-icon d-inline-block ti ti-shirt text-red"></i>
                           <span class="nav-link-title">
                             {{ __('Roles') }}
                           </span>
                         </a>
-                        <a class="dropdown-item {{ request()->segment(1) == 'permissions' ? 'active' : '' }}" href="{{ route('permissions') }}">
+                        <a class="dropdown-item {{ request()->segment(3) == 'permissions' ? 'active' : '' }}" href="{{ route('permissions') }}">
                           <i class="icon nav-link-icon d-inline-block ti ti-list-check text-yellow"></i>
                           <span class="nav-link-title">
                             {{ __('Permissions') }}

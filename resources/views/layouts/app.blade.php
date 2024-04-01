@@ -52,6 +52,7 @@
     <script src="{{ asset('libs/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('libs/datatables/js/dataTables.fixedHeader.min.js') }}"></script>
     <script src="{{ asset('libs/highlightjs/highlight.min.js') }}"></script>
+    <script src="{{ asset('libs/highlightjs/languages/blade.min.js') }}"></script>
     @stack('scripts')
   </body>
 

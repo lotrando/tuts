@@ -80,3 +80,43 @@ Route::get('permissions', function () {
     ];
     return view('default', compact('pageinfo'));
 })->name('permissions');
+
+Route::get('packages/authorization/fortify', function () {
+    $pageinfo = [
+        'title'    => 'Laravel Fortify',
+        'subtitle' => 'Complete Laravel authorization package',
+    ];
+    return view('packages.authorization.fortify', compact('pageinfo'));
+})->name('fortify');
+
+Route::get('packages/authorization/spatie-permissions', function () {
+    $pageinfo = [
+        'title'    => 'Laravel Spatie Permissions',
+        'subtitle' => 'Complete Laravel roles and permissions package',
+    ];
+    return view('packages.authorization.spatie', compact('pageinfo'));
+})->name('spatie');
+
+Route::get('administration/user-rights/users', function () {
+    $pageinfo = [
+        'title'    => 'Users administration',
+        'subtitle' => 'Website users management',
+    ];
+    return view('administration.users', compact('pageinfo'));
+})->name('users');
+
+Route::get('administration/user-rights/roles', function () {
+    $pageinfo = [
+        'title'    => 'Roles administration',
+        'subtitle' => 'User\'s roles management',
+    ];
+    return view('administration.users', compact('pageinfo'));
+})->name('roles');
+
+Route::get('administration/user-rights/permissions', function () {
+    $pageinfo = [
+        'title'    => 'Permissions administration',
+        'subtitle' => 'Roles permissions management',
+    ];
+    return view('administration.users', compact('pageinfo'));
+})->name('permissions');
