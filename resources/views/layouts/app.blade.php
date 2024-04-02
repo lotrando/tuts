@@ -18,10 +18,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link type="image/png" href="{{ asset('img/favicons/home.png') }}" rel="shortcut icon">
     <title>{{ env('APP_NAME' ?? 'Laravel') }}</title>
-
-    <style>
-
-    </style>
   </head>
 
   <body>

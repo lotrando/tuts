@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 :root {
-    --tblr-font-sans-serif: 'Ubuntu', sans-serif;
+    --tblr-font-sans-serif: 'Inter', sans-serif;
     --tblr-body-color: #516274;
     --tblr-body-bg: #e5e8ee;
 }
@@ -42,7 +42,7 @@ td {
 }
 
 code {
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono';
     margin-bottom: 0px;
     font-size: 0.8rem !important;
 }
