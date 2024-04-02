@@ -8,7 +8,34 @@
   <div class="page page-center">
     <div class="container-tight container py-5">
       <h2 class="h2 mb-4 text-center">{{ __('Forgot password') }}</h2>
-      <div class="card shadow-sm">
+      {{-- alert --}}
+      @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible shadow-sm" role="alert">
+          <div class="d-flex">
+            <div>
+              @foreach ($errors->all() as $error)
+                <i class="icon ti ti-exclamation-circle me-1"></i>
+                {{ $error }}<br>
+              @endforeach
+            </div>
+          </div>
+          <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+      @elseif (session('status'))
+        <div class="alert alert-success alert-dismissible shadow-sm" role="alert">
+          <div class="d-flex">
+            <div>
+              <i class="icon ti ti-check me-1"></i>
+            </div>
+            <div>
+              {{ session('status') }}
+            </div>
+          </div>
+          <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+      @endif
+      {{-- Alert end --}}
+      <div class="card shadow-sm shadow-sm">
         <div class="card-stamp">
           <div class="card-stamp-icon bg-blue">
             <svg class="icon icon-tabler icons-tabler-outline icon-tabler-lock-question" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -25,33 +52,6 @@
         <form action="{{ route('password.email') }}" method="POST" autocomplete="off" novalidate="">
           @csrf
           <div class="card-body">
-            {{-- Alert --}}
-            @if ($errors->any())
-              <div class="alert alert-danger alert-dismissible shadow-sm" role="alert">
-                <div class="d-flex">
-                  <div>
-                    @foreach ($errors->all() as $error)
-                      <i class="icon ti ti-exclamation-circle me-1"></i>
-                      {{ $error }}<br>
-                    @endforeach
-                  </div>
-                </div>
-                <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-              </div>
-            @elseif (session('status'))
-              <div class="alert alert-success alert-dismissible shadow-sm" role="alert">
-                <div class="d-flex">
-                  <div>
-                    <i class="icon ti ti-check me-1"></i>
-                  </div>
-                  <div>
-                    {{ session('status') }}
-                  </div>
-                </div>
-                <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-              </div>
-            @endif
-            {{-- Alert end --}}
             <p class="text-secondary mb-4 text-center">{{ __('Enter your email address. We\'ll be send password reset link.') }}</p>
             <div class="mb-3">
               <input class="form-control" name="email" type="email" value="{{ old('email') }}" placeholder="{{ __('Email address') }}">

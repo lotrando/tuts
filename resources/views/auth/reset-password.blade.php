@@ -12,6 +12,33 @@
           <h1 class="h1 mb-3 text-center">Password reset</h1>
         </div>
       </div>
+      {{-- alert --}}
+      @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible shadow-sm" role="alert">
+          <div class="d-flex">
+            <div>
+              @foreach ($errors->all() as $error)
+                <i class="icon ti ti-exclamation-circle me-1"></i>
+                {{ $error }}<br>
+              @endforeach
+            </div>
+          </div>
+          <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+      @elseif (session('status'))
+        <div class="alert alert-success alert-dismissible shadow-sm" role="alert">
+          <div class="d-flex">
+            <div>
+              <i class="icon ti ti-check me-1"></i>
+            </div>
+            <div>
+              {{ session('status') }}
+            </div>
+          </div>
+          <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+      @endif
+      {{-- Alert end --}}
       <div class="card card-md shadow-sm">
         <div class="card-stamp">
           <div class="card-stamp-icon bg-blue">
@@ -31,33 +58,6 @@
           </div>
         </div>
         <div class="card-body">
-          {{-- Alert --}}
-          @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible shadow-sm" role="alert">
-              <div class="d-flex">
-                <div>
-                  @foreach ($errors->all() as $error)
-                    <i class="icon ti ti-exclamation-circle me-1"></i>
-                    {{ $error }}<br>
-                  @endforeach
-                </div>
-              </div>
-              <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-            </div>
-          @elseif (session('status'))
-            <div class="alert alert-success alert-dismissible shadow-sm" role="alert">
-              <div class="d-flex">
-                <div>
-                  <i class="icon ti ti-check me-1"></i>
-                </div>
-                <div>
-                  {{ session('status') }}
-                </div>
-              </div>
-              <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-            </div>
-          @endif
-          {{-- Alert end --}}
           <form action="{{ route('password.update') }}" method="POST">
             @csrf
             <div class="mb-2">

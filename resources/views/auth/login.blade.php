@@ -6,10 +6,37 @@
 
 @section('page')
   <div class="page page-center">
-    <div class="container-tight container py-5">
+    <div class="container-tight container py-3">
       <div class="mb-4 text-center">
         <h2 class="h2 mb-4 text-center">Login to your account</h2>
       </div>
+      {{-- alert --}}
+      @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible shadow-sm" role="alert">
+          <div class="d-flex">
+            <div>
+              @foreach ($errors->all() as $error)
+                <i class="icon ti ti-exclamation-circle me-1"></i>
+                {{ $error }}<br>
+              @endforeach
+            </div>
+          </div>
+          <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+      @elseif (session('status'))
+        <div class="alert alert-success alert-dismissible shadow-sm" role="alert">
+          <div class="d-flex">
+            <div>
+              <i class="icon ti ti-check me-1"></i>
+            </div>
+            <div>
+              {{ session('status') }}
+            </div>
+          </div>
+          <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+        </div>
+      @endif
+      {{-- Alert end --}}
       <div class="card card-md shadow-sm">
         <div class="card-stamp">
           <div class="card-stamp-icon bg-blue">
@@ -23,33 +50,6 @@
           </div>
         </div>
         <div class="card-body p-4">
-          {{-- Alert --}}
-          @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible shadow-sm" role="alert">
-              <div class="d-flex">
-                <div>
-                  @foreach ($errors->all() as $error)
-                    <i class="icon ti ti-exclamation-circle me-1"></i>
-                    {{ $error }}<br>
-                  @endforeach
-                </div>
-              </div>
-              <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-            </div>
-          @elseif (session('status'))
-            <div class="alert alert-success alert-dismissible shadow-sm" role="alert">
-              <div class="d-flex">
-                <div>
-                  <i class="icon ti ti-check me-1"></i>
-                </div>
-                <div>
-                  {{ session('status') }}
-                </div>
-              </div>
-              <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
-            </div>
-          @endif
-          {{-- Alert end --}}
           <form action="{{ route('login') }}" method="POST" autocomplete="off">
             @csrf
             <div class="mb-2">
@@ -60,6 +60,9 @@
               @enderror
             </div>
             <div class="mb-2">
+              <span class="form-label-description mb-1">
+                <a href="{{ route('password.request') }}">{{ __('Forgot your password') }}</a>
+              </span>
               <label class="form-label">
                 {{ __('Password') }}
               </label>
@@ -68,9 +71,6 @@
               @error('password')
                 {{-- <div class="invalid-feedback">{{ $message }}</div> --}}
               @enderror
-              <span class="form-label-description mt-1">
-                <a href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
-              </span>
             </div>
             <div class="mt-5">
               <label class="form-check">
