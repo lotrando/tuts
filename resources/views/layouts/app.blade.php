@@ -38,6 +38,7 @@
     </div>
 
     @include('layouts.components.logout')
+    @include('layouts.components.twofactor')
 
     @stack('modals')
     <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>

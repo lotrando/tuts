@@ -47,6 +47,10 @@ code {
     font-size: 0.8rem !important;
 }
 
+.recovery-code {
+    font-family: 'JetBrains Mono';
+}
+
 /* Toastr */
 #toast-container>div {
     width: 350px;
