@@ -45,8 +45,7 @@
           <div class="card card-body shadow-sm">
             <div class="mb-2">
               <label class="form-label">{{ __('Password') }}</label>
-              <input class="form-control @error('password') is-invalid is-invalid-lite @enderror" name="password" type="password" value="{{ old('password') }}"
-                placeholder="Password">
+              <input class="form-control @error('password') is-invalid is-invalid-lite @enderror" name="password" type="password" value="" placeholder="Password">
               @error('password')
                 {{-- <div class="invalid-feedback">{{ $message }}</div> --}}
               @enderror
